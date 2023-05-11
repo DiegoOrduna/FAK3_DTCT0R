@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="popup.css" />
+
+    <meta charset="utf-8" />
+
+    <title>FAK3 DTCT0R</title>
+
+    <!-- Load TensorFlow.js from a script tag -->
+    <!-- <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"
+    ></script> -->
+    <script type="module" src="./tfjs.js"></script>
+    <script type="module" src="./face-api.js"></script>
+  </head>
+  <body>
+    <h1>
+      FAK<span style="color: red">3</span> DTCT<span style="color: green"
+        >0</span
+      >R
+    </h1>
+    <p>Ingrese la URL del archivo o cargue un archivo de imagen o video</p>
+    <input type="text" id="url" placeholder="Ingrese la URL" />
+    <input type="file" id="file" accept="image/*, video/*" />
+    <button id="analyze">Analizar</button>
+    <script src="popup.js"></script>
+  </body>
+</html>

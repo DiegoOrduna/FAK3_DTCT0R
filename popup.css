@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  width: 450px;
+  height: 200px;
+  padding-bottom: 15px;
+  border-radius: 50%;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+input[type="text"],
+input[type="file"],
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 500px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+  color: white;
+}

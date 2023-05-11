@@ -1,0 +1,73 @@
+{
+    "manifest_version": 3,
+    "name": "FAK3 DTCT0R",
+    "version": "1.0",
+    "description": "Detecta deepfakes en imágenes y videos",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icon.png",
+            "48": "icon.png",
+            "128": "icon.png"
+        },
+        "default_title": "Deep Fake Detector",
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html",
+    "permissions": [
+        "notifications",
+        "contextMenus",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "https://*/*"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"
+            ],
+            "matches": [
+                "https://*/*",
+                "http://*/*"
+            ],
+            "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest; object-src 'self'"
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*/*",
+                "http://*/*"
+            ],
+            "js": [
+                "popup.js",
+                "options.js",
+                "tfjs.js",
+                "face-api.js"
+            ],
+            "json": [
+                "model.json",
+                "face_landmark_68_model-weights_manifest.json",
+                "face_landmark_68_tiny_model-weights_manifest.json",
+                "ssd_mobilenetv1_model-weights_manifest.json"
+            ],
+            "bin": [
+                "group1-shard1of5.bin",
+                "face_landmark_68_model-shard1",
+                "face_landmark_68_tiny_model-shard1",
+                "ssd_mobilenetv1_model-shard1",
+                "ssd_mobilenetv1_model-shard2"
+            ],
+            "run_at": "document_start",
+            "all_frames": true
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    }
+}
