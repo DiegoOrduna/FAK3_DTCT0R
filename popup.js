@@ -155,49 +155,56 @@ async function getFileFromURL(url, fileName, defaultType = "image/png") {
 
 // Manejador de eventos para el botón de "Analizar"
 analyzeBtn = document.getElementById("analyze");
-analyzeBtn.addEventListener("click", function () {
-  let url = document.getElementById("url").value;
-  let file = document.getElementById("file").files[0];
-  let message;
 
-  // Validar que se haya ingresado una URL o se haya cargado un archivo
-  if (!url && !file) {
-    message = "Por favor, ingrese una URL o cargue un archivo";
+try {
+  // Manejador de eventos para el botón de "Analizar"
+  analyzeBtn.addEventListener("click", function () {
+    let url = document.getElementById("url").value;
+    let file = document.getElementById("file").files[0];
+    let message;
 
-    // Mostrar una notificación con el resultado del análisis
-    chrome.notifications.create({
-      type: "basic",
-      title: "Resultado del análisis // No URL or File",
-      message: message,
-      iconUrl: "icon.png",
-    });
-  }
+    // Validar que se haya ingresado una URL o se haya cargado un archivo
+    if (!url && !file) {
+      message = "Por favor, ingrese una URL o cargue un archivo";
 
-  // Si se ingresó una URL, utilizarla para crear un objeto de archivo
-  if (url) {
-    let fileName = url.split("/").pop();
-    file = getFileFromURL(url, fileName).then((file) => {
-      // Verificar que el archivo es una imagen o un video\
+      // Mostrar una notificación con el resultado del análisis
+      chrome.notifications.create({
+        type: "basic",
+        title: "Resultado del análisis // No URL or File",
+        message: message,
+        iconUrl: "icon.png",
+      });
+    }
+
+    // Si se ingresó una URL, utilizarla para crear un objeto de archivo
+    if (url) {
+      let fileName = url.split("/").pop();
+      file = getFileFromURL(url, fileName).then((file) => {
+        // Verificar que el archivo es una imagen o un video\
+        if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
+          // Analizar el archivo en busca de deepfake
+          isReal = detectDeepfake(file);
+          console.log(isReal);
+        }
+      });
+    } else {
       if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
         // Analizar el archivo en busca de deepfake
         isReal = detectDeepfake(file);
         console.log(isReal);
       }
-    });
-  } else {
-    if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
-      // Analizar el archivo en busca de deepfake
-      isReal = detectDeepfake(file);
-      console.log(isReal);
     }
-  }
-});
+  });
+} catch (error) {
+  console.log(error);
+}
 
 // Menu contextual para analizar imágenes y videos. En esta seccion se crea el menu contextual y se le asigna la funcion de analizar el archivo seleccionado.
 chrome.contextMenus.create({
   title: "Analizar DeepFake",
   contexts: ["image", "video"],
-  onclick: function (info, tab) {
+  onclick: function (info) {
+    alert("Analizando archivo...");
     // Se obtiene el archivo seleccionado
     let url = info.srcUrl;
     let fileName = url.split("/").pop();
