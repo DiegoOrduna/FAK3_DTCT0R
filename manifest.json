@@ -17,7 +17,6 @@
         "default_title": "Deep Fake Detector",
         "default_popup": "popup.html"
     },
-    "options_page": "options.html",
     "permissions": [
         "notifications",
         "contextMenus",
@@ -46,7 +45,6 @@
             ],
             "js": [
                 "popup.js",
-                "options.js",
                 "tfjs.js",
                 "face-api.js"
             ],
@@ -57,11 +55,7 @@
                 "ssd_mobilenetv1_model-weights_manifest.json"
             ],
             "bin": [
-                "group1-shard1of5.bin",
-                "face_landmark_68_model-shard1",
-                "face_landmark_68_tiny_model-shard1",
-                "ssd_mobilenetv1_model-shard1",
-                "ssd_mobilenetv1_model-shard2"
+                "group1-shard1of5.bin"
             ],
             "run_at": "document_start",
             "all_frames": true
