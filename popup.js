@@ -203,18 +203,9 @@ try {
 chrome.contextMenus.create({
   title: "Analizar DeepFake",
   contexts: ["image", "video"],
-  onclick: function (info) {
-    alert("Analizando archivo...");
-    // Se obtiene el archivo seleccionado
-    let url = info.srcUrl;
-    let fileName = url.split("/").pop();
-    let file = getFileFromURL(url, fileName).then((file) => {
-      // Verificar que el archivo es una imagen o un video
-      if (file.type.startsWith("image/") || file.type.startsWith("video/")) {
-        // Analizar el archivo en busca de deepfake
-        isReal = detectDeepfake(file);
-        console.log(isReal);
-      }
-    });
-  },
+  onclick: context(info),
 });
+
+function context(info) {
+  alert("Analizando archivo...");
+}
