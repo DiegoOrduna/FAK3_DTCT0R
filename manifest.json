@@ -45,8 +45,7 @@
             ],
             "js": [
                 "popup.js",
-                "tfjs.js",
-                "face-api.js"
+                "tfjs.js"
             ],
             "json": [
                 "model.json",
