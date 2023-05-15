@@ -199,13 +199,9 @@ try {
   console.log(error);
 }
 
-// Menu contextual para analizar imágenes y videos. En esta seccion se crea el menu contextual y se le asigna la funcion de analizar el archivo seleccionado.
+// Finalmente se crea un menu contextual que actua sobre imagenes. Al hacer click derecho sobre una imagen, se muestra la opcion "Analizar DeepFake". Al hacer click sobre esta opcion, se analiza la imagen en busca de deepfakes.
 chrome.contextMenus.create({
   title: "Analizar DeepFake",
-  contexts: ["image", "video"],
-  onclick: context(info),
+  contexts: ["image"],
+  id: "contextMenu",
 });
-
-function context(info) {
-  alert("Analizando archivo...");
-}
