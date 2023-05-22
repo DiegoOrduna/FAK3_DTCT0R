@@ -199,9 +199,9 @@ try {
   console.log(error);
 }
 
-// Finalmente se crea un menu contextual que actua sobre imagenes. Al hacer click derecho sobre una imagen, se muestra la opcion "Analizar DeepFake". Al hacer click sobre esta opcion, se analiza la imagen en busca de deepfakes.
-chrome.contextMenus.create({
-  title: "Analizar DeepFake",
-  contexts: ["image"],
-  id: "contextMenu",
-});
+// // Finalmente se crea un menu contextual que actua sobre imagenes. Al hacer click derecho sobre una imagen, se muestra la opcion "Analizar DeepFake". Al hacer click sobre esta opcion, se analiza la imagen en busca de deepfakes.
+// chrome.contextMenus.create({
+//   title: "Analizar DeepFake",
+//   contexts: ["image"],
+//   id: "contextMenu",
+// });
